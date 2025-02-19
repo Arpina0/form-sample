@@ -1,0 +1,30 @@
+mkdir -p src/components/ui 
+npm install @radix-ui/react-checkbox @radix-ui/react-dialog lucide-react @mui/icons-material @mui/material 
+
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Login to Netlify
+netlify login
+
+# Initialize your site
+netlify init
+
+# Deploy
+netlify deploy --prod 
+
+# Initialize git
+git init
+
+# Add all files
+git add .
+
+# Commit the changes
+git commit -m "Initial commit"
+
+# Add the remote repository
+git remote add origin https://github.com/Arpina0/form-sample.git
+
+# Push to main branch
+git branch -M main
+git push -u origin main 
