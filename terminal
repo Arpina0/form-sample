@@ -28,3 +28,19 @@ git remote add origin https://github.com/Arpina0/form-sample.git
 # Push to main branch
 git branch -M main
 git push -u origin main 
+
+# Remove old build and node_modules
+rm -rf dist node_modules
+rm -rf .netlify
+
+# Npm cache'i temizleyelim
+npm cache clean --force
+
+# Yeniden yükleyelim
+npm install --legacy-peer-deps
+
+# Build alalım
+npm run build
+
+# Netlify'a deploy edelim
+netlify deploy --prod 
