@@ -16,6 +16,8 @@ export default function ReferenceForm() {
     acquaintanceDuration: "",
     relationship: "",
     applicantQualifications: "",
+    solemRecommendation: false,
+    whyWhitetulip: "",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -96,81 +98,143 @@ export default function ReferenceForm() {
                       </DialogContent>
                     </Dialog>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Your Full Name</label>
-                        <Input 
-                          name="fullName" 
-                          placeholder="Enter your full name" 
-                          className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all" 
-                          value={formData.fullName} 
-                          onChange={handleChange} 
-                          required 
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700">Email Address</label>
-                        <Input 
-                          name="email" 
-                          type="email" 
-                          placeholder="Enter your email" 
-                          className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all" 
-                          value={formData.email} 
-                          onChange={handleChange} 
-                          required 
-                        />
-                      </div>
+                    <div className="max-h-[500px] overflow-y-auto pr-2">
+                      <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Personal Information Section */}
+                        <div className="space-y-4 bg-gray-50 p-4 rounded-lg">
+                          <h3 className="font-medium text-gray-700">Your Information</h3>
+                          <div className="space-y-3">
+                            <div className="space-y-2">
+                              <label className="text-sm font-medium text-gray-700">Your Full Name</label>
+                              <Input 
+                                name="fullName" 
+                                placeholder="Enter your full name" 
+                                className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all" 
+                                value={formData.fullName} 
+                                onChange={handleChange} 
+                                required 
+                              />
+                            </div>
+                            
+                            <div className="space-y-2">
+                              <label className="text-sm font-medium text-gray-700">Email Address</label>
+                              <Input 
+                                name="email" 
+                                type="email" 
+                                placeholder="Enter your email" 
+                                className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all" 
+                                value={formData.email} 
+                                onChange={handleChange} 
+                                required 
+                              />
+                            </div>
+                          </div>
+                        </div>
 
-                      <div className="flex items-center gap-2 bg-gray-50 p-3 rounded-lg">
-                        <Checkbox 
-                          id="membershipStatus"
-                          name="membershipStatus" 
-                          checked={formData.membershipStatus} 
-                          onCheckedChange={(checked) => 
-                            setFormData(prev => ({ ...prev, membershipStatus: checked }))
-                          }
-                          className="h-4 w-4 rounded border-gray-300"
-                        />
-                        <label htmlFor="membershipStatus" className="text-gray-600 text-sm">
-                          I confirm that I am an active Whitetulip member
-                        </label>
-                      </div>
+                        {/* Membership & Recommendation Section */}
+                        <div className="space-y-4 bg-gray-50 p-4 rounded-lg">
+                          <h3 className="font-medium text-gray-700">Membership & Recommendation</h3>
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-2 bg-white p-3 rounded-lg border border-gray-100">
+                              <Checkbox 
+                                id="membershipStatus"
+                                name="membershipStatus" 
+                                checked={formData.membershipStatus} 
+                                onCheckedChange={(checked) => 
+                                  setFormData(prev => ({ ...prev, membershipStatus: checked }))
+                                }
+                                className="h-4 w-4 rounded border-gray-300"
+                              />
+                              <label htmlFor="membershipStatus" className="text-gray-600 text-sm">
+                                I confirm that I am an active Whitetulip member
+                              </label>
+                            </div>
 
-                      <Input 
-                        name="acquaintanceDuration" 
-                        placeholder="How long have you known the applicant?" 
-                        className="w-full p-4 border border-gray-200 rounded-lg text-lg" 
-                        value={formData.acquaintanceDuration} 
-                        onChange={handleChange} 
-                        required 
-                      />
+                            <div className="flex items-center gap-2 bg-white p-3 rounded-lg border border-gray-100">
+                              <Checkbox 
+                                id="solemRecommendation"
+                                name="solemRecommendation" 
+                                checked={formData.solemRecommendation} 
+                                onCheckedChange={(checked) => 
+                                  setFormData(prev => ({ ...prev, solemRecommendation: checked }))
+                                }
+                                className="h-4 w-4 rounded border-gray-300"
+                              />
+                              <label htmlFor="solemRecommendation" className="text-gray-600 text-sm">
+                                Do you solemnly and wholeheartedly recommend this individual for Whitetulip membership without any reservations?
+                              </label>
+                            </div>
+                          </div>
+                        </div>
 
-                      <Input 
-                        name="relationship" 
-                        placeholder="Describe your relationship with the applicant" 
-                        className="w-full p-4 border border-gray-200 rounded-lg text-lg" 
-                        value={formData.relationship} 
-                        onChange={handleChange} 
-                        required 
-                      />
+                        {/* Relationship Section */}
+                        <div className="space-y-4 bg-gray-50 p-4 rounded-lg">
+                          <h3 className="font-medium text-gray-700">Your Relationship with the Applicant</h3>
+                          <div className="space-y-3">
+                            <div className="space-y-2">
+                              <label className="text-sm font-medium text-gray-700">How long have you known the applicant?</label>
+                              <Input 
+                                name="acquaintanceDuration" 
+                                placeholder="e.g., 3 years, 6 months" 
+                                className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all" 
+                                value={formData.acquaintanceDuration} 
+                                onChange={handleChange} 
+                                required 
+                              />
+                            </div>
 
-                      <Textarea 
-                        name="applicantQualifications" 
-                        placeholder="Describe the applicant's qualifications, character, and values" 
-                        className="w-full p-4 border border-gray-200 rounded-lg min-h-[120px] text-lg" 
-                        value={formData.applicantQualifications} 
-                        onChange={handleChange} 
-                        required 
-                      />
+                            <div className="space-y-2">
+                              <label className="text-sm font-medium text-gray-700">Describe your relationship with the applicant</label>
+                              <Input 
+                                name="relationship" 
+                                placeholder="e.g., Colleague, Friend, Mentor" 
+                                className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all" 
+                                value={formData.relationship} 
+                                onChange={handleChange} 
+                                required 
+                              />
+                            </div>
+                          </div>
+                        </div>
 
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-[#4169e1] text-white py-4 rounded-lg hover:bg-[#3154c4] transition-all hover:shadow-lg transform hover:scale-[1.02] text-base font-semibold mt-8"
-                      >
-                        Submit Reference
-                      </Button>
-                    </form>
+                        {/* Qualifications Section */}
+                        <div className="space-y-4 bg-gray-50 p-4 rounded-lg">
+                          <h3 className="font-medium text-gray-700">Applicant Qualifications</h3>
+                          <div className="space-y-3">
+                            <div className="space-y-2">
+                              <label className="text-sm font-medium text-gray-700">Describe the applicant's qualifications, character, and values</label>
+                              <Textarea 
+                                name="applicantQualifications" 
+                                placeholder="Please provide details about the applicant's character, skills, and how they align with Whitetulip values" 
+                                className="w-full p-3 border border-gray-200 rounded-lg min-h-[100px] focus:ring-2 focus:ring-blue-500 transition-all" 
+                                value={formData.applicantQualifications} 
+                                onChange={handleChange} 
+                                required 
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <label className="text-sm font-medium text-gray-700">Why do you believe this individual should become a Whitetulip member?</label>
+                              <Textarea 
+                                name="whyWhitetulip" 
+                                placeholder="Explain why you think this person would be a valuable addition to the Whitetulip community" 
+                                className="w-full p-3 border border-gray-200 rounded-lg min-h-[100px] focus:ring-2 focus:ring-blue-500 transition-all" 
+                                value={formData.whyWhitetulip} 
+                                onChange={handleChange} 
+                                required 
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <Button 
+                          type="submit" 
+                          className="w-full bg-[#4169e1] text-white py-4 rounded-lg hover:bg-[#3154c4] transition-all hover:shadow-lg transform hover:scale-[1.02] text-base font-semibold mt-8"
+                        >
+                          Submit Reference
+                        </Button>
+                      </form>
+                    </div>
                   </>
                 ) : (
                   <div className="text-center py-16 px-4">
