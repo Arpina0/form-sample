@@ -16,7 +16,7 @@ export default function ReferenceForm() {
     acquaintanceDuration: "",
     relationship: "",
     applicantQualifications: "",
-    solemRecommendation: false,
+    solemRecommendation: "",
     whyWhitetulip: "",
   });
 
@@ -150,19 +150,44 @@ export default function ReferenceForm() {
                               </label>
                             </div>
 
-                            <div className="flex items-center gap-2 bg-white p-3 rounded-lg border border-gray-100">
-                              <Checkbox 
-                                id="solemRecommendation"
-                                name="solemRecommendation" 
-                                checked={formData.solemRecommendation} 
-                                onCheckedChange={(checked) => 
-                                  setFormData(prev => ({ ...prev, solemRecommendation: checked }))
-                                }
-                                className="h-4 w-4 rounded border-gray-300"
-                              />
-                              <label htmlFor="solemRecommendation" className="text-gray-600 text-sm">
+                            <div className="space-y-2 bg-white p-3 rounded-lg border border-gray-100">
+                              <label className="text-gray-700 text-sm font-medium">
                                 Do you solemnly and wholeheartedly recommend this individual for Whitetulip membership without any reservations?
                               </label>
+                              <div className="flex items-center gap-4 mt-2">
+                                <div className="flex items-center gap-2">
+                                  <input 
+                                    type="radio" 
+                                    id="recommendYes"
+                                    name="solemRecommendation" 
+                                    value="yes"
+                                    checked={formData.solemRecommendation === "yes"} 
+                                    onChange={(e) => 
+                                      setFormData(prev => ({ ...prev, solemRecommendation: e.target.value }))
+                                    }
+                                    className="h-4 w-4"
+                                  />
+                                  <label htmlFor="recommendYes" className="text-gray-600 text-sm">
+                                    Yes
+                                  </label>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <input 
+                                    type="radio" 
+                                    id="recommendNo"
+                                    name="solemRecommendation" 
+                                    value="no"
+                                    checked={formData.solemRecommendation === "no"} 
+                                    onChange={(e) => 
+                                      setFormData(prev => ({ ...prev, solemRecommendation: e.target.value }))
+                                    }
+                                    className="h-4 w-4"
+                                  />
+                                  <label htmlFor="recommendNo" className="text-gray-600 text-sm">
+                                    No
+                                  </label>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
